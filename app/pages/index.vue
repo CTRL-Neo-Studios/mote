@@ -20,6 +20,7 @@
         to="https://github.com/nuxt/ui"
         target="_blank"
       />
+        <UTextarea/>
     </div>
   </div>
 </template>
