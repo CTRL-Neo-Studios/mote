@@ -2,5 +2,18 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: "Public Sans", "Inter", "Segoe UI Variable Static Display", sans-serif;
+  --font-sans: "Segoe UI Variable Static Display", "Inter", "Segoe UI Variable Static Display", sans-serif;
+
+  --color-grandis-50: oklch(100% 0 none);
+  --color-grandis-100: oklch(100% 0 none);
+  --color-grandis-200: oklch(100% 0 none);
+  --color-grandis-300: oklch(96.511% 0.03446 82.914);
+  --color-grandis-400: oklch(93.076% 0.07259 84.408);
+  --color-grandis-500: oklch(89.637% 0.10729 83.52);
+  --color-grandis-600: oklch(85.323% 0.14575 81.229);
+  --color-grandis-700: oklch(81.467% 0.16697 76.078);
+  --color-grandis-800: oklch(72.414% 0.15408 73.202);
+  --color-grandis-900: oklch(58.618% 0.12412 74.192);
+  --color-grandis-950: oklch(51.313% 0.1085 74.502);
+  --color-grandis: var(--color-grandis-500, oklch(89.637% 0.10729 83.52));
 }
