@@ -1,14 +1,22 @@
 use tauri::Manager;
-
 use tauri_plugin_decorum::WebviewWindowExt; // adds helper methods to WebviewWindow
+mod drizzle_proxy;
+include!(concat!(env!("OUT_DIR"), "/generated_migrations.rs"));
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let migrations = load_migrations();
     tauri::Builder::default()
-        .plugin(tauri_plugin_sql::Builder::new().build())
+        .plugin(tauri_plugin_opener::init())
+        .plugin(
+            tauri_plugin_sql::Builder::default()
+                .add_migrations("sqlite:default.db", migrations)
+                .build(),
+        )
         .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_fs::init())
+        .invoke_handler(tauri::generate_handler![drizzle_proxy::run_sql])
         .plugin(tauri_plugin_decorum::init()) // initialize the decorum plugin
         .setup(|app| {
             // Create a custom titlebar for main window
@@ -17,8 +25,19 @@ pub fn run() {
             let main_window = app.get_webview_window("main").unwrap();
             main_window.create_overlay_titlebar().unwrap();
 
-            #[cfg(target_os = "macos")]
-            main_window.set_traffic_lights_inset(16.0, 20.0).unwrap();
+            // Some macOS-specific helpers
+            #[cfg(target_os = "macos")] {
+                // Set a custom inset to the traffic lights
+                main_window.set_traffic_lights_inset(16.0, 16.0).unwrap();
+
+                // Make window transparent without privateApi
+                main_window.make_transparent().unwrap();
+
+                // Set window level
+                // NSWindowLevel: https://developer.apple.com/documentation/appkit/nswindowlevel
+                main_window.set_window_level(25).unwrap();
+            }
+
             if cfg!(debug_assertions) {
                 app.handle().plugin(
                     tauri_plugin_log::Builder::default()

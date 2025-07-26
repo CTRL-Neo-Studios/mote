@@ -40,6 +40,9 @@
   "plugins": {
     "fs": {
       "requireLiteralLeadingDot": false
+    },
+    "sql": {
+      "preload": ["sqlite:default.db"]
     }
   }
 }

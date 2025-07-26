@@ -1,0 +1,1 @@
+export { default as user, userRelations } from "./user"
