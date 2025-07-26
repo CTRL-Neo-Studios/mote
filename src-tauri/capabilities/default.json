@@ -18,6 +18,24 @@
     "core:window:allow-is-maximized",
     "core:window:allow-start-dragging",
     "core:window:allow-toggle-maximize",
-    "decorum:allow-show-snap-overlay"
+    "decorum:allow-show-snap-overlay",
+
+    "fs:default",
+    "fs:read-all",
+    "fs:write-all",
+    "fs:allow-rename",
+    "fs:allow-mkdir",
+    "fs:allow-exists",
+    "fs:allow-watch",
+    {
+      "identifier": "fs:scope",
+      "allow": [{ "path": "**/*" }]
+    },
+
+    "dialog:default",
+    "notification:default",
+    "fs:default",
+    "sql:default",
+    "sql:allow-execute"
   ]
 }

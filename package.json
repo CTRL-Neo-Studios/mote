@@ -24,6 +24,7 @@
 		"@nuxt/image": "1.10.0",
 		"@nuxt/ui-pro": "^3.3.0",
 		"@nuxtjs/i18n": "10.0.3",
+		"@nuxtjs/mdc": "0.17.2",
 		"@tauri-apps/api": "^2.7.0",
 		"@vueuse/nuxt": "13.5.0",
 		"nuxt": "^4.0.1",
