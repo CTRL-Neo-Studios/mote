@@ -41,6 +41,7 @@
 		"nuxt-auth-utils": "0.5.20",
 		"ollama": "^0.5.16",
 		"ollama-ai-provider": "^1.2.0",
+		"sqlite-vec": "0.1.7-alpha.2",
 		"vue": "^3.5.18"
 	},
 	"devDependencies": {

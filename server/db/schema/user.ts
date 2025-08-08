@@ -3,7 +3,7 @@ import {relations} from "drizzle-orm/relations";
 
 const user = sqliteTable("user", {
     id: text().$defaultFn(() => crypto.randomUUID()).primaryKey(),
-    name: text().default("Unnamed User")
+    name: text().default("Unnamed User").notNull()
 })
 
 export const userRelations = relations(user, ({many}) => ({
